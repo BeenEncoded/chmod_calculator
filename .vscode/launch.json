@@ -8,7 +8,7 @@
             "name": "(lldb) Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/calc_chmod",
+            "program": "${workspaceFolder}/build/chmod_calc/chmod_calc",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

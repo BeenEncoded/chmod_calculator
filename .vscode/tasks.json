@@ -5,10 +5,10 @@
             "label": "C/C++: clang++ build the project",
             "command": "/Users/jonathan/bin/cppbuild",
             "args": [
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/chmod_calculator"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"

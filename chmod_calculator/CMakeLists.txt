@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.24.1 FATAL_ERROR)
+set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
+set(CMAKE_C_COMPILER "/usr/bin/clang")
+set(CMAKE_BUILD_TYPE Debug)
+
+set(USE_BOOST true)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+#the build:
+project(chmod_calc)
+
+add_subdirectory(chmod_calc)
+add_subdirectory(unit_tests)

@@ -4,17 +4,19 @@
 
 #include "gui/MainFrame.hpp"
 
-class MyApp: public wxApp
+class App;
+
+class App: public wxApp
 {
 public:
     virtual bool OnInit();
 };
 
-wxIMPLEMENT_APP(MyApp);
+wxIMPLEMENT_APP(App);
 
-bool MyApp::OnInit()
+bool App::OnInit()
 {
-    gui::MainFrame *frame = new gui::MainFrame( "Hello World", wxPoint(50, 50), wxSize(450, 340) );
-    frame->Show( true );
+    gui::MainFrame *frame = new gui::MainFrame("Hello World", wxPoint(50, 50), wxSize(450, 340));
+    frame->Show(true);
     return true;
 }

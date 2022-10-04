@@ -4,13 +4,12 @@
 
 namespace gui
 {
-    class MainFrame: public wxFrame
+    class MainFrame : public wxFrame
     {
     public:
         MainFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
     private:
         void OnExit(wxCommandEvent& event);
-
     };
 }
 

@@ -1,3 +1,3 @@
 target_sources(${targ} PRIVATE
-    MainWindow.cpp
-    MainWindow.hpp)
+    MainFrame.cpp
+    MainFrame.hpp)

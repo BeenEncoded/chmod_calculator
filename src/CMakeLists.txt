@@ -24,7 +24,7 @@ add_executable(${targ} ${PROJECT_SOURCE_FILES})
 
 #add folders:
 target_sources(${targ} PRIVATE main.cpp)
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/GUI")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/gui")
 
 if(RELEASE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")

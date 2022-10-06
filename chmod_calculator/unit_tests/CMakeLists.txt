@@ -16,8 +16,10 @@ include_directories("../chmod_calc")
 #add folders:
 target_sources(${targ} PRIVATE 
     runner.cpp
-    misc_tests.cpp)
-#add_subdirectory(folder1)
+    misc_tests.cpp
+    permissions_tests.cpp
+    ../chmod_calc/data/chmodperms.cpp
+    ../chmod_calc/data/chmodperms.hpp)
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     message("Adding those debug symbols!")

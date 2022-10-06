@@ -18,6 +18,7 @@ target_sources(${targ} PRIVATE
     global_defines.hpp)
 add_subdirectory(gui)
 add_subdirectory(utilities)
+add_subdirectory(data)
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     message("Adding those debug symbols!")

@@ -4,4 +4,5 @@ target_sources(${targ} PRIVATE
     filesystem.cpp
     filesystem.hpp
     stream_operations.cpp
-    stream_operations.hpp)
+    stream_operations.hpp
+    base_convert.hpp)

@@ -5,6 +5,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 set(USE_BOOST true)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 17)
 
 #the build:
 project(chmod_calc)

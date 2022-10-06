@@ -8,10 +8,6 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include <iostream>
-#include <boost/version.hpp>
+ #define BOOST_TEST_MODULE "Tests for chmod_calculator"
+ #include <boost/test/unit_test.hpp>
 
-int main(int, char**)
-{
-    std::cout<< "Test: "<< BOOST_LIB_VERSION<< std::endl;
-}

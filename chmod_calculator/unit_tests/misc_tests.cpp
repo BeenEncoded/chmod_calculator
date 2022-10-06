@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_SUITE(suite_of_misc_tests)
  */
 BOOST_AUTO_TEST_CASE(misc_test_case)
 {
-    std::cout<< "Hello World!"<< std::endl;
+    std::cout<< "Hello tests!"<< std::endl;
     BOOST_CHECK(true);
 }
 

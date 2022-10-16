@@ -48,6 +48,7 @@ namespace data::chmod
 
         bool operator==(permissions) const;
         bool operator!=(permissions) const;
+        permissions& operator=(permissions);
 
         void set(const permission_target&, const permission_type&);
         bool get(const permission_target&, const permission_type&) const;

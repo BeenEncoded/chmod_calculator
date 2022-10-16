@@ -52,6 +52,12 @@ namespace data::chmod
         return (this->perms != p.perms);
     }
 
+    permissions& permissions::operator=(permissions p)
+    {
+        this->perms = p.perms;
+        return *this;
+    }
+
     /**
      * @brief Sets the permissions for a target.  This will set all 3 types of
      *        permission types.  permission_type is a bitset.  This way, you can

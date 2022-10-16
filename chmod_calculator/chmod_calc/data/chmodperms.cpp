@@ -27,8 +27,29 @@ namespace data::chmod
     permissions::permissions() : 
         perms{0}{}
 
+    permissions::permissions(const int16_t& p) : 
+        perms{p}{}
+
     permissions::~permissions()
     {
+    }
+
+    /**
+     * @brief This operator allows for implicit comparison using any
+     * explicitly defined constructor.
+     * 
+     * @param p perms
+     * @return true if equal
+     * @return false if not equal
+     */
+    bool permissions::operator==(permissions p) const
+    {
+        return (this->perms == p.perms);
+    }
+
+    bool permissions::operator!=(permissions p) const
+    {
+        return (this->perms != p.perms);
     }
 
     /**

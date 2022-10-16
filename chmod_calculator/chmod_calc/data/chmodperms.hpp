@@ -33,17 +33,21 @@ namespace data::chmod
     };
 
     /**
-     * @brief Stores and calculates octal permissions for chmod
-     * 
+     * @brief Stores and calculates octal permissions for chmod.
+     * This is basically a int16_t.
      */
     class permissions
     {
     public:
+        permissions(const int16_t&);
         permissions(const permissions&);
         permissions(permissions&&);
         permissions();
 
         ~permissions();
+
+        bool operator==(permissions) const;
+        bool operator!=(permissions) const;
 
         void set(const permission_target&, const permission_type&);
         bool get(const permission_target&, const permission_type&) const;

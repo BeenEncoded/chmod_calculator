@@ -19,7 +19,9 @@ target_sources(${targ} PRIVATE
     misc_tests.cpp
     permissions_tests.cpp
     ../chmod_calc/data/chmodperms.cpp
-    ../chmod_calc/data/chmodperms.hpp)
+    ../chmod_calc/data/chmodperms.hpp
+    ../chmod_calc/global_defines.hpp)
+add_subdirectory(test_utilities)
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     message("Adding those debug symbols!")

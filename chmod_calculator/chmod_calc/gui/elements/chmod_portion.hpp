@@ -14,7 +14,7 @@
 #include <wx/wx.h>
 #include <wx/panel.h>
 
-namespace ui::element
+namespace gui::element
 {
     class ChmodPTypeCheckbox;
 
@@ -23,12 +23,12 @@ namespace ui::element
     public:
         ChmodPTypeCheckbox();
         ChmodPTypeCheckbox(
-                  wxWindow*, 
-                  wxWindowID, 
-            const wxPoint&, 
-            const wxSize&, 
-                  long, 
-            const wxString&);
+                wxWindow*, 
+                wxWindowID = wxID_ANY, 
+          const wxPoint& =   wxDefaultPosition, 
+          const wxSize&   =  wxDefaultSize, 
+                long       = wxTAB_TRAVERSAL, 
+          const wxString& =  wxPanelNameStr);
         
         ~ChmodPTypeCheckbox();
 

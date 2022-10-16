@@ -26,7 +26,7 @@ namespace
         std::array<permission_type, 3> types{READ, WRITE, EXECUTE};
         int16_t bit{0}, tempt;
 
-        std::clog<< "Argument passed: "<< std::bitset<9>(bitset)<< std::endl;
+        //std::clog<< "Argument passed: "<< std::bitset<9>(bitset)<< std::endl;
         for(auto it{targs.cbegin()}; it != targs.cend(); ++it)
         {
             tempt = 0;
@@ -37,7 +37,7 @@ namespace
                     tempt |= types[xy];
                 }
             }
-            std::clog<< "Applying: "<< std::bitset<3>(tempt)<< std::endl;
+            //std::clog<< "Applying: "<< std::bitset<3>(tempt)<< std::endl;
             perms.set(*it, (permission_type)tempt);
             bit += 3;
         }
@@ -48,6 +48,11 @@ namespace
 
 BOOST_AUTO_TEST_SUITE(permissions_data_and_calculations_tests)
 
+/**
+ * @brief Tests basic modification and retrieval of ther information
+ * that the permissions object is supposed to store.
+ * 
+ */
 BOOST_AUTO_TEST_CASE(basic_modification_test)
 {
     using namespace data::chmod;
@@ -70,6 +75,10 @@ BOOST_AUTO_TEST_CASE(basic_modification_test)
     }
 }
 
+/**
+ * @brief Tests assignment and comparison of the permissions object.
+ * 
+ */
 BOOST_AUTO_TEST_CASE(assignment_and_comparison)
 {
     using namespace data::chmod;
@@ -77,10 +86,15 @@ BOOST_AUTO_TEST_CASE(assignment_and_comparison)
 
     permissions perms{0};
     int16_t tempint{0};
-    for(unsigned int x{0}; x < 4; ++x) tempint |= (1<<random_number(0, 8));
-    set_manually(perms, tempint);
 
-    BOOST_CHECK(perms == tempint);
+    for(unsigned int repeats{0}; repeats < 20; ++repeats)
+    {
+        tempint = 0;
+        for(unsigned int x{0}; x < 4; ++x) tempint |= (1<<random_number(0, 8));
+        set_manually(perms, tempint);
+
+        BOOST_CHECK(perms == tempint);
+    }
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -12,6 +12,8 @@
 #define MAIN_WINDOW_HPP_INCLUDED
 #include <wx/wx.h>
 
+#include "elements/chmod_portion.hpp"
+
 namespace gui
 {
     /**
@@ -21,9 +23,11 @@ namespace gui
     class MainFrame : public wxFrame
     {
     public:
-        MainFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
+        MainFrame(const wxString&, const wxPoint&, const wxSize&);
     private:
         void OnExit(wxCommandEvent& event);
+
+        element::ChmodPTypeCheckbox *ownerp, *groupp, *publicp;
     };
 }
 

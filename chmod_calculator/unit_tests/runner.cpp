@@ -15,6 +15,8 @@
 
 namespace
 {
+    struct GlobalInitializationFixtrue;
+
     /**
      * @brief Initializes and uninitializes the test program.
      * 

@@ -18,6 +18,8 @@
 
 namespace
 {
+    void set_manually(data::chmod::permissions&, const int16_t&);
+
     inline void set_manually(data::chmod::permissions& perms, const int16_t& bitset)
     {
         using namespace data::chmod;
@@ -51,7 +53,6 @@ BOOST_AUTO_TEST_SUITE(permissions_data_and_calculations_tests)
 /**
  * @brief Tests basic modification and retrieval of ther information
  * that the permissions object is supposed to store.
- * 
  */
 BOOST_AUTO_TEST_CASE(basic_modification_test)
 {
@@ -77,7 +78,6 @@ BOOST_AUTO_TEST_CASE(basic_modification_test)
 
 /**
  * @brief Tests assignment and comparison of the permissions object.
- * 
  */
 BOOST_AUTO_TEST_CASE(assignment_and_comparison)
 {

@@ -7,8 +7,9 @@ if(USE_BOOST)
     endif()
 endif()
 
-find_package(wxWidgets COMPONENTS gl core base REQUIRED)
-include(${wxWidgets_USE_FILE})
+# add_library(wxcore wxnet)
+# target_include_directories(${targ} wxcore PUBLIC "../wxWidgets-3.2.1/include")
+target_link_libraries(${targ} PUBLIC wxcore wxnet)
 
 add_executable(${targ} ${PROJECT_SOURCE_FILES})
 
@@ -26,8 +27,6 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 endif()
-
-target_link_libraries(${targ} LINK_PUBLIC ${wxWidgets_LIBRARIES})
 
 if(USE_BOOST)
     if(Boost_FOUND)

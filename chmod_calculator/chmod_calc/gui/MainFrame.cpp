@@ -13,29 +13,29 @@
 
 namespace gui
 {
-    MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& size) : 
-        ownerp{nullptr}, groupp{nullptr}, publicp{nullptr}
+    MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     {
-        Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
         wxMenu *menuFile = new wxMenu;
         menuFile->Append(wxID_EXIT);
 
         wxMenuBar *menuBar = new wxMenuBar;
         menuBar->Append(menuFile, "&File");
-        SetMenuBar(menuBar);
-        CreateStatusBar();
 
-        this->ownerp = new element::ChmodPTypeCheckbox(this);
-        this->groupp = new element::ChmodPTypeCheckbox(this);
-        this->publicp = new element::ChmodPTypeCheckbox(this);
+        // this->ownerp = new element::ChmodPTypeCheckbox(this);
+        // this->groupp = new element::ChmodPTypeCheckbox(this);
+        // this->publicp = new element::ChmodPTypeCheckbox(this);
 
-        wxBoxSizer* permslayout = new wxBoxSizer(wxHORIZONTAL);
-        permslayout->Add(this->ownerp);
-        permslayout->Add(this->groupp);
-        permslayout->Add(this->publicp);
+        // wxBoxSizer* permslayout = new wxBoxSizer(wxHORIZONTAL);
+        // permslayout->Add(this->ownerp);
+        // permslayout->Add(this->groupp);
+        // permslayout->Add(this->publicp);
 
-        this->SetSizer(permslayout);
+        //this->SetSizer(permslayout);
+
+        this->SetMenuBar(menuBar);
+        this->CreateStatusBar();
         this->SetStatusText("Test");
+        Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
     }
 
     /**

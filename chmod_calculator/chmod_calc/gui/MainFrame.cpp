@@ -13,7 +13,8 @@
 
 namespace gui
 {
-    MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
+    MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& size) : 
+        wxFrame(NULL, wxID_ANY, title, pos, size)
     {
         wxMenu *menuFile = new wxMenu;
         menuFile->Append(wxID_EXIT);
@@ -21,16 +22,16 @@ namespace gui
         wxMenuBar *menuBar = new wxMenuBar;
         menuBar->Append(menuFile, "&File");
 
-        // this->ownerp = new element::ChmodPTypeCheckbox(this);
-        // this->groupp = new element::ChmodPTypeCheckbox(this);
-        // this->publicp = new element::ChmodPTypeCheckbox(this);
+        this->ownerp = new element::ChmodPTypeCheckbox(this);
+        this->groupp = new element::ChmodPTypeCheckbox(this);
+        this->publicp = new element::ChmodPTypeCheckbox(this);
 
-        // wxBoxSizer* permslayout = new wxBoxSizer(wxHORIZONTAL);
-        // permslayout->Add(this->ownerp);
-        // permslayout->Add(this->groupp);
-        // permslayout->Add(this->publicp);
+        wxBoxSizer* permslayout = new wxBoxSizer(wxHORIZONTAL);
+        permslayout->Add(this->ownerp);
+        permslayout->Add(this->groupp);
+        permslayout->Add(this->publicp);
 
-        //this->SetSizer(permslayout);
+        this->SetSizer(permslayout);
 
         this->SetMenuBar(menuBar);
         this->CreateStatusBar();

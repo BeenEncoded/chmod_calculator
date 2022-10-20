@@ -7,11 +7,12 @@ if(USE_BOOST)
     endif()
 endif()
 
-# add_library(wxcore wxnet)
-# target_include_directories(${targ} wxcore PUBLIC "../wxWidgets-3.2.1/include")
-target_link_libraries(${targ} PUBLIC wxcore wxnet)
+#add_library(wxcore wxnet)
 
 add_executable(${targ} ${PROJECT_SOURCE_FILES})
+
+target_include_directories(${targ} PUBLIC "../wxWidgets-3.2.1/include")
+target_link_libraries(${targ} PUBLIC wxcore wxbase wxxml wxadv wxribbon wxaui wxpropgrid wxrichtext wxnet)
 
 #add folders:
 target_sources(${targ} PRIVATE 

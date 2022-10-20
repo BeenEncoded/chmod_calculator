@@ -10,6 +10,6 @@ set(CMAKE_CXX_STANDARD 17)
 #the build:
 project(chmod_calc)
 
+add_subdirectory(wxWidgets-3.2.1)
 add_subdirectory(chmod_calc)
 add_subdirectory(unit_tests)
-add_subdirectory(wxWidgets-3.2.1)

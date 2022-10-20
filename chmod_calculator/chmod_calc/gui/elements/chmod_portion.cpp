@@ -21,7 +21,7 @@ namespace
 
 namespace gui::element
 {
-    ChmodPTypeCheckbox::ChmodPTypeCheckbox() : 
+    ChmodPTypeCheckbox::ChmodPTypeCheckbox() : wxPanel(),
             read{nullptr}, write{nullptr}, execute{nullptr}
     {
         this->construct_pane();
@@ -33,7 +33,7 @@ namespace gui::element
         const wxPoint&   pos, 
         const wxSize&    size, 
               long       style, 
-        const wxString&  name) : 
+        const wxString&  name) : wxPanel(parent, id, pos, size, style, name),
             read{nullptr}, write{nullptr}, execute{nullptr}
     {
         this->construct_pane();

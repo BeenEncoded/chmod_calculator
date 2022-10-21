@@ -32,10 +32,14 @@ namespace gui::element
         
         ~ChmodPTypeCheckbox();
 
+        void SetTitle(const std::string& = "NO_NAME");
+
     private:
         void construct_pane();
 
+        wxStaticText* panel_title;
         wxCheckBox *read, *write, *execute;
+        bool constructed;
     };
 
 

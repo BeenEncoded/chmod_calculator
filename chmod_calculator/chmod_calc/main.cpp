@@ -28,7 +28,11 @@ wxIMPLEMENT_APP(App);
 
 bool App::OnInit()
 {
-    gui::MainFrame *frame = new gui::MainFrame("Hello World", wxPoint(50, 50), wxSize(450, 340));
+    gui::MainFrame *frame = new gui::MainFrame(
+        "chmod Perms Calculator", 
+        wxPoint(50, 50), 
+        wxSize(450, 340));
+    
     frame->Show(true);
     return true;
 }

@@ -22,7 +22,11 @@ namespace
 namespace gui::element
 {
     ChmodPTypeCheckbox::ChmodPTypeCheckbox() : wxPanel(),
-            read{nullptr}, write{nullptr}, execute{nullptr}
+            panel_title{nullptr},
+            read{nullptr}, 
+            write{nullptr}, 
+            execute{nullptr}, 
+            constructed{false}
     {
         this->construct_pane();
     }
@@ -34,7 +38,11 @@ namespace gui::element
         const wxSize&    size, 
               long       style, 
         const wxString&  name) : wxPanel(parent, id, pos, size, style, name),
-            read{nullptr}, write{nullptr}, execute{nullptr}
+            panel_title{nullptr},
+            read{nullptr}, 
+            write{nullptr}, 
+            execute{nullptr}, 
+            constructed{false}
     {
         this->construct_pane();
     }
@@ -43,18 +51,38 @@ namespace gui::element
     {
     }
 
+    /**
+     * @brief Sets the title for this panel.  This is a static label that's
+     * shown to the user -- it indicates what this checkbox-group is for.
+     * 
+     * @param newtitle The new title to set this ui element to.  Defaults to "NO_NAME"
+     */
+    void ChmodPTypeCheckbox::SetTitle(const std::string& newtitle)
+    {
+        if(this->panel_title != nullptr)
+        {
+            this->panel_title->SetLabel(newtitle);
+        }
+    }
+
     void ChmodPTypeCheckbox::construct_pane()
     {
-        wxBoxSizer* layout = new wxBoxSizer(wxVERTICAL);
-        this->read = new wxCheckBox(static_cast<wxWindow*>(this), this->GetId(), "Read");
-        this->write = new wxCheckBox(static_cast<wxWindow*>(this), this->GetId(), "Write");
-        this->execute = new wxCheckBox(static_cast<wxWindow*>(this), this->GetId(), "Execute");
+        if(!this->constructed)
+        {
+            this->constructed = true;
+            wxBoxSizer* layout = new wxBoxSizer(wxVERTICAL);
+            this->read = new wxCheckBox(static_cast<wxWindow*>(this), this->GetId(), "Read");
+            this->write = new wxCheckBox(static_cast<wxWindow*>(this), this->GetId(), "Write");
+            this->execute = new wxCheckBox(static_cast<wxWindow*>(this), this->GetId(), "Execute");
+            this->panel_title = new wxStaticText(this, this->GetId(), "NO_NAME");
 
-        layout->Add(this->read);
-        layout->Add(this->write);
-        layout->Add(this->execute);
+            layout->Add(this->panel_title);
+            layout->Add(this->read);
+            layout->Add(this->write);
+            layout->Add(this->execute);
 
-        this->SetSizer(layout);
+            this->SetSizer(layout);
+        }
     }
 
 

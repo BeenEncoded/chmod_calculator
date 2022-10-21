@@ -27,15 +27,21 @@ namespace gui
         this->publicp = new element::ChmodPTypeCheckbox(this);
 
         wxBoxSizer* permslayout = new wxBoxSizer(wxHORIZONTAL);
+        permslayout->AddStretchSpacer();
         permslayout->Add(this->ownerp);
+        permslayout->AddStretchSpacer();
         permslayout->Add(this->groupp);
+        permslayout->AddStretchSpacer();
         permslayout->Add(this->publicp);
+        permslayout->AddStretchSpacer();
+        this->ownerp->SetTitle("OWNER");
+        this->groupp->SetTitle("GROUP");
+        this->publicp->SetTitle("PUBLIC");
 
         this->SetSizer(permslayout);
 
         this->SetMenuBar(menuBar);
         this->CreateStatusBar();
-        this->SetStatusText("Test");
         Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
     }
 

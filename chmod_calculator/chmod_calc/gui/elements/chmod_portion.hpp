@@ -33,6 +33,9 @@ namespace gui::element
         ~ChmodPTypeCheckbox();
 
         void SetTitle(const std::string& = "NO_NAME");
+        const wxCheckBox* const get_read() const;
+        const wxCheckBox* const get_write() const;
+        const wxCheckBox* const get_execute() const;
 
     private:
         void construct_pane();

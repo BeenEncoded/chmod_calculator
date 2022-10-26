@@ -65,6 +65,21 @@ namespace gui::element
         }
     }
 
+    const wxCheckBox* const ChmodPTypeCheckbox::get_read() const
+    {
+        return this->read;
+    }
+
+    const wxCheckBox* const ChmodPTypeCheckbox::get_write() const
+    {
+        return this->write;
+    }
+
+    const wxCheckBox* const ChmodPTypeCheckbox::get_execute() const
+    {
+        return this->execute;
+    }
+
     void ChmodPTypeCheckbox::construct_pane()
     {
         if(!this->constructed)

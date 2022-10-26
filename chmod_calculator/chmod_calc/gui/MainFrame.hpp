@@ -25,9 +25,15 @@ namespace gui
     public:
         MainFrame(const wxString&, const wxPoint&, const wxSize&);
     private:
-        void OnExit(wxCommandEvent& event);
+        void OnExit(wxCommandEvent&);
+        void OnCheckAction(wxCommandEvent&);
+
+        //miscellaneous stuff:
+        void default_layout();
+        void calculate_permissions();
 
         element::ChmodPTypeCheckbox *ownerp, *groupp, *publicp;
+        wxStaticText *output_label;
     };
 }
 

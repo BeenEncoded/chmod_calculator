@@ -10,6 +10,24 @@
  */
 #include "MainFrame.hpp"
 #include "elements/chmod_portion.hpp"
+#include "wx/event.h"
+#include "../data/chmodperms.hpp"
+
+namespace
+{
+    inline short get_perm_flags(const gui::element::ChmodPTypeCheckbox& box)
+    {
+        using namespace data::chmod;
+        short ptypes{0};
+
+        if(box.get_execute()->IsChecked()) ptypes |= permission_type::EXECUTE;
+        if(box.get_read()->IsChecked()) ptypes |= permission_type::READ;
+        if(box.get_write()->IsChecked()) ptypes |= permission_type::WRITE;
+        return ptypes;
+    }
+
+
+}
 
 namespace gui
 {
@@ -26,23 +44,12 @@ namespace gui
         this->groupp = new element::ChmodPTypeCheckbox(this);
         this->publicp = new element::ChmodPTypeCheckbox(this);
 
-        wxBoxSizer* permslayout = new wxBoxSizer(wxHORIZONTAL);
-        permslayout->AddStretchSpacer();
-        permslayout->Add(this->ownerp);
-        permslayout->AddStretchSpacer();
-        permslayout->Add(this->groupp);
-        permslayout->AddStretchSpacer();
-        permslayout->Add(this->publicp);
-        permslayout->AddStretchSpacer();
-        this->ownerp->SetTitle("OWNER");
-        this->groupp->SetTitle("GROUP");
-        this->publicp->SetTitle("PUBLIC");
-
-        this->SetSizer(permslayout);
+        this->default_layout();
 
         this->SetMenuBar(menuBar);
         this->CreateStatusBar();
         Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
+        Bind(wxEVT_CHECKBOX, &MainFrame::OnCheckAction, this, wxID_ANY);
     }
 
     /**
@@ -54,4 +61,50 @@ namespace gui
     {
         Close(true);
     }
+
+    void MainFrame::OnCheckAction(wxCommandEvent& event)
+    {
+        this->calculate_permissions();
+    }
+
+    void MainFrame::calculate_permissions()
+    {
+        using namespace data::chmod;
+
+        permissions perms{0};
+        
+        perms.set(GROUP, (permission_type)get_perm_flags(*(this->groupp)));
+        perms.set(OWNER, (permission_type)get_perm_flags(*(this->ownerp)));
+        perms.set(PUBLIC, (permission_type)get_perm_flags(*(this->publicp)));
+
+        this->output_label->SetLabel(std::to_string(perms.octal_value(OWNER)) + std::to_string(perms.octal_value(GROUP)) + std::to_string(perms.octal_value(PUBLIC)));
+    }
+
+    void MainFrame::default_layout()
+    {
+        wxBoxSizer *permslayout = new wxBoxSizer(wxHORIZONTAL), 
+            *labellayout = new wxBoxSizer(wxHORIZONTAL);
+
+        this->SetSizer(new wxBoxSizer(wxVERTICAL));
+
+        permslayout->AddStretchSpacer();
+        permslayout->Add(this->ownerp);
+        permslayout->AddStretchSpacer();
+        permslayout->Add(this->groupp);
+        permslayout->AddStretchSpacer();
+        permslayout->Add(this->publicp);
+        permslayout->AddStretchSpacer();
+        this->ownerp->SetTitle("OWNER");
+        this->groupp->SetTitle("GROUP");
+        this->publicp->SetTitle("PUBLIC");
+
+        this->output_label = new wxStaticText(this, this->GetId(), "000");
+        labellayout->AddStretchSpacer();
+        labellayout->Add(this->output_label);
+        labellayout->AddStretchSpacer();
+
+        this->GetSizer()->Add(permslayout, 1, wxEXPAND);
+        this->GetSizer()->Add(labellayout, 1, wxEXPAND);
+    }
+
 }

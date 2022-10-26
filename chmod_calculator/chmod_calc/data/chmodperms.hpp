@@ -27,9 +27,9 @@ namespace data::chmod
 
     enum permission_type : uint16_t
     {
-        READ = (1<<0),
+        EXECUTE = (1<<0),
         WRITE = (1<<1),
-        EXECUTE = (1<<2)
+        READ = (1<<2)
     };
 
     /**
@@ -52,7 +52,7 @@ namespace data::chmod
 
         void set(const permission_target&, const permission_type&);
         bool get(const permission_target&, const permission_type&) const;
-        std::vector<int> octal_value(const permission_target&) const;
+        short octal_value(const permission_target&) const;
         std::string to_string() const;
 
     private:

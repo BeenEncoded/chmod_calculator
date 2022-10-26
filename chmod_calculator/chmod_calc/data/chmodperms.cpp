@@ -91,15 +91,22 @@ namespace data::chmod
         return ((this->perms & (ptype<<targ)) == (ptype<<targ));
     }
 
-    std::vector<int> permissions::octal_value(const permission_target& targ) const
+    short permissions::octal_value(const permission_target& targ) const
     {
         using namespace bmap;
 
         std::vector<int> binaryrep{0, 0, 0};
-        if(this->get(targ, READ)) binaryrep[2] = 1;
+        if(this->get(targ, READ)) binaryrep[0] = 1;
         if(this->get(targ, WRITE)) binaryrep[1] = 1;
-        if(this->get(targ, EXECUTE)) binaryrep[0] = 1;
-        return convert_base<2, 8>(binaryrep);
+        if(this->get(targ, EXECUTE)) binaryrep[2] = 1;
+
+        auto octalrep = convert_base<2, 8>(binaryrep);
+
+        if(octalrep.empty())
+        {
+            ethrow("OCTAL CALCULATIONS NOT AS ASSUMED! Returns size of 0");
+        }
+        return (short)octalrep[0];
     }
 
     std::string permissions::to_string() const

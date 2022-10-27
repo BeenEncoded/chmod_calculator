@@ -27,6 +27,7 @@ namespace gui
     private:
         void OnExit(wxCommandEvent&);
         void OnCheckAction(wxCommandEvent&);
+        void OnClearSelection(wxCommandEvent&);
 
         //miscellaneous stuff:
         void default_layout();
@@ -34,6 +35,7 @@ namespace gui
 
         element::ChmodPTypeCheckbox *ownerp, *groupp, *publicp;
         wxStaticText *output_label;
+        wxButton *clear_button;
     };
 }
 

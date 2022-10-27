@@ -15,6 +15,14 @@
 
 namespace
 {
+    short get_perm_flags(const gui::element::ChmodPTypeCheckbox&);
+
+    /**
+     * @brief Amalgumates the permission bits into 1 bitset.
+     * 
+     * @param box The wxPanel object with the checkboxes.
+     * @return short The bitset representing what boxes were checked.
+     */
     inline short get_perm_flags(const gui::element::ChmodPTypeCheckbox& box)
     {
         using namespace data::chmod;
@@ -26,6 +34,10 @@ namespace
         return ptypes;
     }
 
+    enum
+    {
+        ID_CLEAR_CHECKBOXES = 1
+    };
 
 }
 
@@ -43,6 +55,7 @@ namespace gui
         this->ownerp = new element::ChmodPTypeCheckbox(this);
         this->groupp = new element::ChmodPTypeCheckbox(this);
         this->publicp = new element::ChmodPTypeCheckbox(this);
+        this->clear_button = new wxButton(this, ID_CLEAR_CHECKBOXES, "Clear");
 
         this->default_layout();
 
@@ -50,6 +63,7 @@ namespace gui
         this->CreateStatusBar();
         Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
         Bind(wxEVT_CHECKBOX, &MainFrame::OnCheckAction, this, wxID_ANY);
+        Bind(wxEVT_BUTTON, &MainFrame::OnClearSelection, this, ID_CLEAR_CHECKBOXES);
     }
 
     /**
@@ -64,6 +78,14 @@ namespace gui
 
     void MainFrame::OnCheckAction(wxCommandEvent& event)
     {
+        this->calculate_permissions();
+    }
+
+    void MainFrame::OnClearSelection(wxCommandEvent& event)
+    {
+        this->groupp->reset_checks();
+        this->publicp->reset_checks();
+        this->ownerp->reset_checks();
         this->calculate_permissions();
     }
 
@@ -105,6 +127,7 @@ namespace gui
 
         this->GetSizer()->Add(permslayout, 1, wxEXPAND);
         this->GetSizer()->Add(labellayout, 1, wxEXPAND);
+        this->GetSizer()->Add(this->clear_button, 1, wxALIGN_CENTER_HORIZONTAL);
     }
 
 }

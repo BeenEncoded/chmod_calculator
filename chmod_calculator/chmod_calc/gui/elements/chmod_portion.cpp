@@ -100,6 +100,13 @@ namespace gui::element
         }
     }
 
+    void ChmodPTypeCheckbox::check_all()
+    {
+        this->read->SetValue(true);
+        this->write->SetValue(true);
+        this->execute->SetValue(true);
+    }
+
     void ChmodPTypeCheckbox::reset_checks()
     {
         this->read->SetValue(false);

@@ -34,6 +34,7 @@ namespace gui::element
 
         void SetTitle(const std::string& = "NO_NAME");
         void reset_checks();
+        void check_all();
 
         const wxCheckBox* const get_read() const;
         const wxCheckBox* const get_write() const;

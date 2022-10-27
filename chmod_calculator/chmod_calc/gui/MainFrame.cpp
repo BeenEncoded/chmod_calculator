@@ -36,7 +36,8 @@ namespace
 
     enum
     {
-        ID_CLEAR_CHECKBOXES = 1
+        ID_CLEAR_CHECKBOXES = 1,
+        ID_SELECT_ALL_CHECKBOXES
     };
 
 }
@@ -56,6 +57,7 @@ namespace gui
         this->groupp = new element::ChmodPTypeCheckbox(this);
         this->publicp = new element::ChmodPTypeCheckbox(this);
         this->clear_button = new wxButton(this, ID_CLEAR_CHECKBOXES, "Clear");
+        this->select_all_button = new wxButton(this, ID_SELECT_ALL_CHECKBOXES, "Select All");
 
         this->default_layout();
 
@@ -64,6 +66,7 @@ namespace gui
         Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
         Bind(wxEVT_CHECKBOX, &MainFrame::OnCheckAction, this, wxID_ANY);
         Bind(wxEVT_BUTTON, &MainFrame::OnClearSelection, this, ID_CLEAR_CHECKBOXES);
+        Bind(wxEVT_BUTTON, &MainFrame::OnSelectAll, this, ID_SELECT_ALL_CHECKBOXES);
     }
 
     /**
@@ -71,17 +74,25 @@ namespace gui
      * 
      * @param event The event intercepted.
      */
-    void MainFrame::OnExit(wxCommandEvent& event)
+    void MainFrame::OnExit(wxCommandEvent&)
     {
         Close(true);
     }
 
-    void MainFrame::OnCheckAction(wxCommandEvent& event)
+    void MainFrame::OnCheckAction(wxCommandEvent&)
     {
         this->calculate_permissions();
     }
 
-    void MainFrame::OnClearSelection(wxCommandEvent& event)
+    void MainFrame::OnSelectAll(wxCommandEvent&)
+    {
+        this->groupp->check_all();
+        this->publicp->check_all();
+        this->ownerp->check_all();
+        this->calculate_permissions();
+    }
+
+    void MainFrame::OnClearSelection(wxCommandEvent&)
     {
         this->groupp->reset_checks();
         this->publicp->reset_checks();
@@ -105,7 +116,8 @@ namespace gui
     void MainFrame::default_layout()
     {
         wxBoxSizer *permslayout = new wxBoxSizer(wxHORIZONTAL), 
-            *labellayout = new wxBoxSizer(wxHORIZONTAL);
+            *labellayout = new wxBoxSizer(wxHORIZONTAL),
+            *buttonslayout = new wxBoxSizer(wxHORIZONTAL);
 
         this->SetSizer(new wxBoxSizer(wxVERTICAL));
 
@@ -125,9 +137,12 @@ namespace gui
         labellayout->Add(this->output_label);
         labellayout->AddStretchSpacer();
 
+        buttonslayout->Add(this->clear_button);
+        buttonslayout->Add(this->select_all_button);
+
         this->GetSizer()->Add(permslayout, 1, wxEXPAND);
         this->GetSizer()->Add(labellayout, 1, wxEXPAND);
-        this->GetSizer()->Add(this->clear_button, 1, wxALIGN_CENTER_HORIZONTAL);
+        this->GetSizer()->Add(buttonslayout, 1, wxALIGN_CENTER_HORIZONTAL);
     }
 
 }

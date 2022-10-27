@@ -33,6 +33,8 @@ namespace gui::element
         ~ChmodPTypeCheckbox();
 
         void SetTitle(const std::string& = "NO_NAME");
+        void reset_checks();
+
         const wxCheckBox* const get_read() const;
         const wxCheckBox* const get_write() const;
         const wxCheckBox* const get_execute() const;

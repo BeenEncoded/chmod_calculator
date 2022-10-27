@@ -20,12 +20,13 @@ namespace
 {
     void set_manually(data::chmod::permissions&, const int16_t&);
 
+    //... it's complicated...
     inline void set_manually(data::chmod::permissions& perms, const int16_t& bitset)
     {
         using namespace data::chmod;
 
         std::array<permission_target, 3> targs{OWNER, GROUP, PUBLIC};
-        std::array<permission_type, 3> types{READ, WRITE, EXECUTE};
+        std::array<permission_type, 3> types{EXECUTE, WRITE, READ};
         int16_t bit{0}, tempt;
 
         //std::clog<< "Argument passed: "<< std::bitset<9>(bitset)<< std::endl;
@@ -43,6 +44,8 @@ namespace
             perms.set(*it, (permission_type)tempt);
             bit += 3;
         }
+        // std::clog<< "Permissions: "<< perms.octal_value(OWNER)<< 
+        //     perms.octal_value(GROUP)<< perms.octal_value(PUBLIC)<< std::endl;
     }
 
 

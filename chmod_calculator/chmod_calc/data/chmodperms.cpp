@@ -91,6 +91,14 @@ namespace data::chmod
         return ((this->perms & (ptype<<targ)) == (ptype<<targ));
     }
 
+    /**
+     * @brief Gets the octal value of the permission target (owner, group, or public).
+     * Combine all three to get the full permissions that have to be bassed as the octal
+     * argument to chmod.
+     * 
+     * @param targ The target -- OWNER, GROUP, or PUBLIC.
+     * @return short A number from 0-7 representing any combination of read, write or execute.
+     */
     short permissions::octal_value(const permission_target& targ) const
     {
         using namespace bmap;
@@ -104,7 +112,7 @@ namespace data::chmod
 
         if(octalrep.empty())
         {
-            ethrow("OCTAL CALCULATIONS NOT AS ASSUMED! Returns size of 0");
+            ethrow("OCTAL CALCULATIONS NOT AS ASSUMED! Returns a vector of size of 0");
         }
         return (short)octalrep[0];
     }

@@ -5,7 +5,7 @@ This program calculates permissions for chmod.  It's just a handy tool to have.
 
 ---
 
-![Demonstration gif](Demonstration.gif)
+![Demonstration gif](Demontration.gif)
 
 ## Dependencies
 - cmake 3.24

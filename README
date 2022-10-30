@@ -1,8 +1,11 @@
+
 # chmod permissions calculator
 
 This program calculates permissions for chmod.  It's just a handy tool to have.
 
 ---
+
+![Demonstration gif](Demonstration.gif)
 
 ## Dependencies
 - cmake 3.24
